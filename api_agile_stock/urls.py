@@ -32,7 +32,6 @@ schema_view = get_schema_view(
         title="Api Agile Stock",
         default_version='v1.0.0',
         description=content,
-        linkedin="https://www.linkedin.com/in/isaque-menezes/",
         contact=openapi.Contact(
             name="Isaque Menezes",
             email="isaquesantos1517@gmail.com",
@@ -40,7 +39,7 @@ schema_view = get_schema_view(
         ),
     ),
     public=True,
-    # permission_classes=[permissions.AllowAny,],
+    permission_classes=[permissions.AllowAny,],
 )
 
 urlpatterns = [
