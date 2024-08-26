@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # RestFramework
     'rest_framework',
+    'drf_yasg',
 
     # Apps AgStock
         # - API
@@ -53,6 +54,13 @@ INSTALLED_APPS = [
     'auth_ag',
 
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
