@@ -31,7 +31,8 @@ class FuncionalidadeAPIView(APIView):
         # Ação de Leitura
         co_acao = 1
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             if pk is None:
                 funcionalidades = Funcionalidade.objects.all()
                 serializer = FuncionalidadeSerializer(funcionalidades, many=True)
@@ -50,7 +51,8 @@ class FuncionalidadeAPIView(APIView):
         # Ação de Criação
         co_acao = 2
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             serializer = FuncionalidadeSerializer(data=request.data)
         else:
             return Response({'detail': 'Não autorizado.'}, status=status.HTTP_403_FORBIDDEN)
@@ -65,7 +67,8 @@ class FuncionalidadeAPIView(APIView):
         # Ação de Alteração
         co_acao = 3
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             try:
                 funcionalidade = Funcionalidade.objects.get(pk=pk)
             except Funcionalidade.DoesNotExist:
@@ -84,7 +87,8 @@ class FuncionalidadeAPIView(APIView):
         # Ação de Excluir
         co_acao = 4
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             try:
                 funcionalidade = Funcionalidade.objects.get(pk=pk)
             except Funcionalidade.DoesNotExist:

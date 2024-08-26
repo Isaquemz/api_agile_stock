@@ -33,7 +33,8 @@ class SaidaAPIView(APIView):
         # Ação de Leitura
         co_acao = 1
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             if pk is None:
                 saidas = Saida.objects.all()
                 serializer = SaidaSerializer(saidas, many=True)
@@ -52,7 +53,8 @@ class SaidaAPIView(APIView):
         # Ação de Criação
         co_acao = 2
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             serializer = SaidaSerializer(data=request.data)
         else:
             return Response({'detail': 'Não autorizado.'}, status=status.HTTP_403_FORBIDDEN)
@@ -67,7 +69,8 @@ class SaidaAPIView(APIView):
         # Ação de Alteração
         co_acao = 3
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             try:
                 saida = Saida.objects.get(pk=pk)
             except Saida.DoesNotExist:
@@ -86,7 +89,8 @@ class SaidaAPIView(APIView):
         # Ação de Excluir
         co_acao = 4
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
 
             try:
                 saida = Saida.objects.get(pk=pk)

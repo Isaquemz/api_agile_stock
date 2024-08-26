@@ -19,19 +19,28 @@ from django.urls import path, include, re_path
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+import os
+from django.conf import settings
+
+readme_path = os.path.join(settings.BASE_DIR, 'README.md')
+with open(readme_path, 'r', encoding='utf-8') as file:
+    content = file.read()
 
 # Configuração do schema do Swagger
 schema_view = get_schema_view(
     openapi.Info(
-        title="Título da Sua API",
-        default_version='v1',
-        description="Descrição detalhada da sua API.",
-        terms_of_service="https://www.seusite.com/termos/",
-        contact=openapi.Contact(email="contato@seusite.com"),
-        license=openapi.License(name="Licença XYZ"),
+        title="Api Agile Stock",
+        default_version='v1.0.0',
+        description=content,
+        linkedin="https://www.linkedin.com/in/isaque-menezes/",
+        contact=openapi.Contact(
+            name="Isaque Menezes",
+            email="isaquesantos1517@gmail.com",
+            url="https://www.linkedin.com/in/isaque-menezes/"
+        ),
     ),
     public=True,
-    permission_classes=[permissions.AllowAny,],
+    # permission_classes=[permissions.AllowAny,],
 )
 
 urlpatterns = [

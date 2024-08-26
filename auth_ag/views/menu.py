@@ -31,7 +31,8 @@ class MenuAPIView(APIView):
         # Ação de Leitura
         co_acao = 1
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             if pk is None:
                 menus = Menu.objects.all()
                 serializer = MenuSerializer(menus, many=True)
@@ -50,7 +51,8 @@ class MenuAPIView(APIView):
         # Ação de Criação
         co_acao = 2
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             serializer = MenuSerializer(data=request.data)
         else:
             return Response({'detail': 'Não autorizado.'}, status=status.HTTP_403_FORBIDDEN)
@@ -65,7 +67,8 @@ class MenuAPIView(APIView):
         # Ação de Alteração
         co_acao = 3
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             try:
                 menu = Menu.objects.get(pk=pk)
             except Menu.DoesNotExist:
@@ -84,7 +87,8 @@ class MenuAPIView(APIView):
         # Ação de Excluir
         co_acao = 4
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
 
             try:
                 menu = Menu.objects.get(pk=pk)
@@ -121,7 +125,8 @@ class SubmenuAPIView(APIView):
         # Ação de Leitura
         co_acao = 1
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             if pk is None:
                 submenus = Submenu.objects.all()
                 serializer = SubmenuSerializer(submenus, many=True)
@@ -140,7 +145,8 @@ class SubmenuAPIView(APIView):
         # Ação de Criação
         co_acao = 2
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             serializer = SubmenuSerializer(data=request.data)
         else:
             return Response({'detail': 'Não autorizado.'}, status=status.HTTP_403_FORBIDDEN)
@@ -154,7 +160,8 @@ class SubmenuAPIView(APIView):
         # Ação de Alteração
         co_acao = 3
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             try:
                 submenu = Submenu.objects.get(pk=pk)
             except Submenu.DoesNotExist:
@@ -173,7 +180,8 @@ class SubmenuAPIView(APIView):
         # Ação de Excluir
         co_acao = 4
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
 
             try:
                 submenu = Submenu.objects.get(pk=pk)
@@ -210,7 +218,8 @@ class MenuSubmenuFuncionalidadeAPIView(APIView):
         # Ação de Leitura
         co_acao = 1
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             if pk is None:
                 menu_sub_func = MenuSubmenuFuncionalidade.objects.all()
                 serializer = MenuSubmenuFuncionalidadeSerializer(menu_sub_func, many=True)
@@ -229,7 +238,8 @@ class MenuSubmenuFuncionalidadeAPIView(APIView):
         # Ação de Criação
         co_acao = 2
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             serializer = MenuSubmenuFuncionalidadeSerializer(data=request.data)
         else:
             return Response({'detail': 'Não autorizado.'}, status=status.HTTP_403_FORBIDDEN)
@@ -244,7 +254,8 @@ class MenuSubmenuFuncionalidadeAPIView(APIView):
         # Ação de Alteração
         co_acao = 3
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             try:
                 menu_sub_func = MenuSubmenuFuncionalidade.objects.get(pk=pk)
             except MenuSubmenuFuncionalidade.DoesNotExist:
@@ -263,7 +274,8 @@ class MenuSubmenuFuncionalidadeAPIView(APIView):
         # Ação de Excluir
         co_acao = 4
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             try:
                 menu_sub_func = MenuSubmenuFuncionalidade.objects.get(pk=pk)
             except MenuSubmenuFuncionalidade.DoesNotExist:

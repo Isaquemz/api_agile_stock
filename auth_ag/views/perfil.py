@@ -30,7 +30,8 @@ class PerfilAPIView(APIView):
         # Ação de Leitura
         co_acao = 1
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             if pk is None:
                 perfis = Perfil.objects.all()
                 serializer = PerfilSerializer(perfis, many=True)
@@ -49,7 +50,8 @@ class PerfilAPIView(APIView):
         # Ação de Criação
         co_acao = 2
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             serializer = PerfilSerializer(data=request.data)
         else:
             return Response({'detail': 'Não autorizado.'}, status=status.HTTP_403_FORBIDDEN)
@@ -64,7 +66,8 @@ class PerfilAPIView(APIView):
         # Ação de Alteração
         co_acao = 3
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
             try:
                 perfil = Perfil.objects.get(pk=pk)
             except Perfil.DoesNotExist:
@@ -83,7 +86,8 @@ class PerfilAPIView(APIView):
         # Ação de Excluir
         co_acao = 4
 
-        if self.has_permission(request, co_acao):
+        has_acesso = self.has_permission(request, co_acao)
+        if not isinstance(has_acesso, JsonResponse) and has_acesso:
 
             try:
                 perfil = Perfil.objects.get(pk=pk)
